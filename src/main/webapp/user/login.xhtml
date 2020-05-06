@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html [<!ENTITY copy "&#169;">]>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="userTemplate.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="content">
+        <h:form id="login">
+            <h:messages></h:messages>
+            <div>
+                <div>
+                    <h:outputLabel for="user_pid" value="#{msg.lblPersonalId}"/>
+                </div>
+                <div>
+                    <h:inputText id="user_pid"
+                                 value="#{login.userPId}"
+                                 required="true"
+                                 requiredMessage="Please, enter your Personal ID.">
+                        <f:validateLength minimum="2" maximum="30"/>
+                    </h:inputText>
+                    <h:message for="user_pid" errorClass="error"/>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h:outputLabel for="user_pass" value="#{msg.lblPassword}"/>
+                </div>
+                <div>
+                    <h:inputSecret id="user_pass"
+                                   value="#{login.password}"
+                                   required="true"
+                                   requiredMessage="Please, enter your password.">
+                        <f:validateLength minimum="2" maximum="30"/>
+                    </h:inputSecret>
+                    <h:message for="user_pid" errorClass="error"/>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <h:commandButton id="login_button"
+                                     value="#{msg.btnLogin}"
+                                     action="#{login.login}"
+                                     styleClass="button"/>
+                </div>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
