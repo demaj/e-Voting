@@ -3,13 +3,19 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="userTemplate.xhtml">
+                template="../templates/userTemplate.xhtml">
     <ui:define name="content">
-        <h:outputText value="Please, confirm your vote!"/>
         <h:form>
+            <h:outputText value="Please, confirm your vote!"/>
             <h:commandLink action="#{confirm.confirm()}">
                 <h:panelGroup layout="block">
-                    <h:outputText value="Confirm"/>
+                    <h:outputText value="#{msg.lblConfirm}" styleClass="submit"/>
+                </h:panelGroup>
+            </h:commandLink>
+
+            <h:commandLink action="#{confirm.return()}">
+                <h:panelGroup layout="block">
+                    <h:outputText value="#{msg.lblReturn}" styleClass="submit"/>
                 </h:panelGroup>
             </h:commandLink>
         </h:form>

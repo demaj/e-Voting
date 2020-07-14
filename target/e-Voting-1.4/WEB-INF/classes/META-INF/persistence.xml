@@ -3,8 +3,19 @@
   <persistence-unit name="VotingPU" transaction-type="JTA">
     <jta-data-source>jdbc/voting</jta-data-source>
     <class>com.gentian.e.voting.entities.Candidate</class>
-    <class>com.gentian.e.voting.entities.Subject</class>
     <class>com.gentian.e.voting.entities.User</class>
+    <class>com.gentian.e.voting.entities.LoginInfo</class>
+    <class>com.gentian.e.voting.entities.Rezultatet</class>
+    <class>com.gentian.e.voting.entities.RezultatetKandidatet</class>
+    <class>com.gentian.e.voting.entities.Address</class>
+    <class>com.gentian.e.voting.entities.City</class>
+    <class>com.gentian.e.voting.entities.Subject</class>
+    <class>com.gentian.e.voting.entities.PollingStation</class>
+    <class>com.gentian.e.voting.entities.Voter</class>
+    <class>com.gentian.e.voting.entities.ECandidate</class>
+    <class>com.gentian.e.voting.entities.ESubject</class>
+    <class>com.gentian.e.voting.user.LoginController</class>
+    <class>com.gentian.e.voting.entities.EVoter</class>
     <class>com.gentian.e.voting.entities.Results</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties/>

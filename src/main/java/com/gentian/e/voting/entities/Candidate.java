@@ -1,113 +1,98 @@
 package com.gentian.e.voting.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author Gentian
  */
 @Entity
-@Table(name = "candidates")
+@Table(name = "kandidatet")
 public class Candidate implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     // <editor-fold defaultstate="collapsed" desc="Property Id">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "candidate_id")
-    private Long _id;
+    @Column(name = "kandidati_id")
+    private int _id;
 
-    public Long getId() {
+    public int getId() {
         return _id;
     }
 
-    public void setId(Long id) {
-        _id = id;
-    }
-    // </editor-fold>
-
-    // <editor-fold defaultstate="collapsed" desc="Property Candidate Name">
-    @Column(name = "candidate_name")
-    private String _candidateName = "";
-
-    public String getCandidateName() {
-        return _candidateName;
-    }
-
-    public void setCandidateName(String _candidateName) {
-        this._candidateName = _candidateName;
+    public void setId(int id) {
+        _id= id;
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Property Candidate Number">
-    @Column(name = "candidate_number")
-    private int _candidateNumber = -1;
-    
-    public int getCandidateNumber() {
-        return _candidateNumber;
+    // <editor-fold defaultstate="collapsed" desc="Property First Name">
+    @Column(name = "kandidati_emri")
+    private String _firstName;
+
+    public String getFirstName() {
+        return _firstName;
     }
 
-    public void setCandidateNumber(int candidateNumber) {
-        this._candidateNumber = candidateNumber;
+    public void setFirstName(String firstName) {
+        _firstName = firstName;
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Property Candidate Subject Number">
-    @Column(name = "candidate_subject_number")
-    private int _candidateSubjectNumber = -1;
+    // <editor-fold defaultstate="collapsed" desc="Property Last Name">
+    @Column(name = "kandidati_mbiemri")
+    private String _lastName;
 
-    public int getCandidateSubjectNumber() {
-        return _candidateSubjectNumber;
+    public String getLastName() {
+        return _lastName;
     }
 
-    public void setCandidateSubjectNumber(int candidateSubjectNumber) {
-        this._candidateSubjectNumber = candidateSubjectNumber;
-    }
-    // </editor-fold>
-    
-    // <editor-fold defaultstate="collapsed" desc="Property Candidate Number Of Votes">
-    @Column(name = "candidate_number_of_votes")
-    private long _candidateNumberOfVotes;
-
-    public long getCandidateNumberOfVotes() {
-        return _candidateNumberOfVotes;
-    }
-
-    public void setCandidateNumberOfVotes(long candidateNumberOfVotes) {
-        _candidateNumberOfVotes = candidateNumberOfVotes;
+    public void setLastName(String lastName) {
+        _lastName = lastName;
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="hashcode / equals / toString">
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += _id;
-        return hash;
+    // <editor-fold defaultstate="collapsed" desc="Property Birthday">
+    @Column(name = "kandidati_datelindja")
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date _birthday;
+
+    public Date getBirthday() {
+        return _birthday;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Candidate)) {
-            return false;
-        }
-        Candidate other = (Candidate) object;
-        return Objects.equals(_id, other.getId());
+    public void setBirthday(Date birthday) {
+        _birthday = birthday;
+    }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Property Email">
+    @Column(name = "kandidati_emaili")
+    private String _email;
+
+    public String getEmail() {
+        return _email;
     }
 
+    public void setEmail(String email) {
+        _email = email;
+    }
+    // </editor-fold>
+    
     @Override
     public String toString() {
-        return "com.gentian.e.voting.entities.Candidates[ id=" + _id + " ]";
+        return "Kandidati[ Id=" + _id + ", "
+                + "Emri=" + _firstName + ", "
+                + "Mbiemri=" + _lastName + " ]";
     }
-    // </editor-fold>
     
 }

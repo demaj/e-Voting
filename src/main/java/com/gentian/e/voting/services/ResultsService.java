@@ -1,18 +1,21 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.gentian.e.voting.services;
 
-import com.gentian.e.voting.entities.Results;
 import javax.ejb.Stateless;
 
 /**
  *
- * @author Gentian
+ * @author genti
  */
 @Stateless
-public class ResultsService extends AbstractService<Results> {
-    
+public class ResultsService extends AbstractService {
+
     public ResultsService() {
-        super(Results.class);
-        System.out.println("ctor ResultsService");
+        System.out.println("ctor SubjectService");
     }
     
 }

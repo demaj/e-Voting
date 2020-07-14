@@ -3,16 +3,16 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="userTemplate.xhtml">
+                template="../templates/userTemplate.xhtml">
     <ui:define name="content">
         <h:form>
-            <ui:repeat value="#{subjectsList.subjects}"
-                        var="subject">
+            <ui:repeat value="#{subjectsList.subjectsMap}"
+                        var="subjectMap">
                  <h:panelGroup layout="block"
                                styleClass="subject">
-                     <h:commandButton value="#{subject.subjectNumber} #{subject.subjectName}"
+                     <h:commandButton value="#{subjectMap.key.number} #{subjectMap.value.name}"
                                       styleClass="subject-button"
-                                      action="#{subjectsList.voteSubject(subject)}"/>
+                                      action="#{subjectsList.voteESubject(subjectMap.value)}"/>
                  </h:panelGroup>
              </ui:repeat>
         </h:form>

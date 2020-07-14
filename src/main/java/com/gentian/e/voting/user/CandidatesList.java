@@ -1,6 +1,6 @@
 package com.gentian.e.voting.user;
 
-import com.gentian.e.voting.entities.Candidate;
+import com.gentian.e.voting.entities.ECandidate;
 import com.gentian.e.voting.entities.Subject;
 import com.gentian.e.voting.enums.Page;
 import com.gentian.e.voting.helper.SessionTools;
@@ -29,12 +29,11 @@ public class CandidatesList implements Serializable {
     
     @Inject private SessionTools _sessionTools;
     @Inject private CandidateService _candidateService;
-    private Subject _subject;
     
     // <editor-fold defaultstate="collapsed" desc="Property Candidates List">
-    private List<Candidate> _candidates;
+    private List<ECandidate> _candidates;
 
-    public List<Candidate> getCandidates() {
+    public List<ECandidate> getCandidates() {
         return _candidates;
     }
     // </editor-fold>
@@ -44,9 +43,9 @@ public class CandidatesList implements Serializable {
         _sessionTools.setVotedCandidates(new ArrayList<>());
         FacesContext fc = FacesContext.getCurrentInstance();
         Map<String, String> paramMap = fc.getExternalContext().getRequestParameterMap();
-        _subject = _sessionTools.getVotedSubject();
-        int subjectId = _subject.getSubjectNumber();
-        _candidates = _candidateService.findBySubject(subjectId);
+        Subject _subject = _sessionTools.getVotedSubject();
+        int subjectId = _subject.getId();
+        _candidates = _candidateService.findBySubjectId(subjectId);
     }
     
     public String vote() {

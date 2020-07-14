@@ -1,7 +1,6 @@
 package com.gentian.e.voting.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import javax.persistence.Table;
  * @author Gentian
  */
 @Entity
-@Table(name = "subjects")
+@Table(name = "subjektet")
 public class Subject implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,66 +21,50 @@ public class Subject implements Serializable {
     // <editor-fold defaultstate="collapsed" desc="Property Id">
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "subject_id")
-    private Long _id;
+    @Column(name = "subjekti_id")
+    private int _id;
 
-    public Long getId() {
+    public int getId() {
         return _id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         _id = id;
     }
     // </editor-fold>
     
-    // <editor-fold defaultstate="collapsed" desc="Property Subject Name">
-    @Column(name = "subject_name")
-    private String _subjectName = "";
+    // <editor-fold defaultstate="collapsed" desc="Property Name">
+    @Column(name = "subjekti_emri")
+    private String _name;
 
-    public String getSubjectName() {
-        return _subjectName;
+    public String getName() {
+        return _name;
     }
 
-    public void setSubjectName(String subjectName) {
-        this._subjectName = subjectName;
+    public void setName(String name) {
+        _name = name;
     }
     // </editor-fold>
+
+    /*
+    // <editor-fold defaultstate="collapsed" desc="Property ESubject">
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "zs_subjekti_id", referencedColumnName = "subjekti_id")
+    private ESubject _eSubject;
+
+    public ESubject getESubject() {
+        return _eSubject;
+    }
+
+    public void setESubject(ESubject eSubject) {
+        _eSubject = eSubject;
+    }
+    // </editor-fold>
+    */
     
-    // <editor-fold defaultstate="collapsed" desc="Property Subject Number">
-    @Column(name = "subject_number")
-    private int _subjectNumber = -1;
-
-    public int getSubjectNumber() {
-        return _subjectNumber;
-    }
-
-    public void setSubjectNumber(int subjectNumber) {
-        this._subjectNumber = subjectNumber;
-    }
-    // </editor-fold>
-
-    // <editor-fold defaultstate="collapsed" desc="hashcode / equals / toString">
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += _id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Subject)) {
-            return false;
-        }
-        Subject other = (Subject) object;
-        return Objects.equals(this._id, other.getId());
-    }
-
     @Override
     public String toString() {
-        return "com.gentian.e.voting.entities.Subjects[ id=" + _id + " ]";
+        return "Subjekti[ Id=" + _id + ", Emri=" + _name + " ]";
     }
-    // </editor-fold>
     
 }

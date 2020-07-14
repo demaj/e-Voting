@@ -1,10 +1,12 @@
 package com.gentian.e.voting.user;
 
+import com.gentian.e.voting.entities.ESubject;
 import com.gentian.e.voting.entities.Subject;
 import com.gentian.e.voting.enums.Page;
 import com.gentian.e.voting.helper.SessionTools;
 import com.gentian.e.voting.services.SubjectService;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -29,6 +31,22 @@ public class SubjectsList implements Serializable {
     @Inject private SessionTools _sessionTools;
     @Inject private SubjectService _subjectService;
 
+    // <editor-fold defaultstate="collapsed" desc="Property Subjects Map">
+    private Map<ESubject, Subject> _subjectsMap = new HashMap<>();
+
+    public Map<ESubject, Subject> getSubjectsMap() {
+        return _subjectsMap;
+    }
+
+    public void setSubjectsMap(Map<ESubject, Subject> subjectMap) {
+        _subjectsMap = subjectMap;
+    }
+    
+    public void addSubjectMap(ESubject key, Subject value) {
+        _subjectsMap.put(key, value);
+    }
+    //</editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Property Subjects List">
     private List<Subject> _subjects;
 
@@ -45,10 +63,17 @@ public class SubjectsList implements Serializable {
     private void init() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         Map<String, String> paramMap = facesContext.getExternalContext().getRequestParameterMap();
-        _subjects = _subjectService.findAll();
+        _subjects = _subjectService.findAll(Subject.class);
+        _subjectsMap = _subjectService.findSubjects();
     }
     
     public String voteSubject(Subject subject) {
+        _logger.log(Level.INFO, "Subject Number Voted: {0}", subject);
+        _sessionTools.setVotedSubject(subject);
+        return Page.VoteCandidate.getRedirectUrl();
+    }
+    
+    public String voteESubject(Subject subject) {
         _logger.log(Level.INFO, "Subject Number Voted: {0}", subject);
         _sessionTools.setVotedSubject(subject);
         return Page.VoteCandidate.getRedirectUrl();

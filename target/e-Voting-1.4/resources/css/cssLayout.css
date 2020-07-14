@@ -1,51 +1,32 @@
 
-#top {
+header {
     position: relative;
-    background-color: #036fab;
+    background-color: #2D4F9B;
     color: white;
-    padding: 3rem;
-    margin: 0px 0px 10px 0px;
-    font-size: 2rem;
+    padding: 2em;
+    display: flex;
+    align-items: center;
 }
 
-#bottom {
+footer {
+    position: fixed;
+    background-color: #2D4F9B;
+    color: white;
+    padding: 0.5em;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     text-align: center;
-    position: relative;
-    background-color: #c2dfef;
-    padding: 5px;
-    margin: 10px 0px 0px 0px;
-}
-
-#left {
-    float: left;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
-}
-
-#right {
-    float: right;
-    background-color: #ece3a5;
-    padding: 5px;
-    width: 150px;
 }
 
 .center_content {
     position: relative;
     background-color: #dddddd;
-    padding: 5px;
-}
-
-.left_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin-left: 170px;
-}
-
-.right_content {
-    background-color: #dddddd;
-    padding: 5px;
-    margin: 0px 170px 0px 170px;
+    height: 100%;
+    padding: 1em;
+    display: block;
+    align-items: center;
+    justify-content: center;
 }
 
 #top a:link, #top a:visited {
@@ -60,4 +41,86 @@
   text-decoration : underline;
 }
 
+.subject {
+    text-align: center;
+}
 
+.subject-button {
+    background-color: whitesmoke;
+    border: none;
+    width: 50%;
+    padding: 1rem;
+    margin: 10px;
+}
+
+.candidate {
+    text-align: center;
+}
+
+.candidate {
+    display: inline-block;
+    background-color: whitesmoke;
+    border: none;
+    width: 6%;
+    padding: 0.7rem;
+    margin: 5px;
+}
+
+.candidate.active {
+    color: white;
+    background-color: maroon;
+}
+
+.candidate-name {
+    text-align: left;
+}
+
+.candidate-number {
+    text-align: right;
+}
+
+.submit {
+    text-align: center;
+    background-color: whitesmoke;
+    border: none;
+    width: 6%;
+    padding: 0.7rem;
+    margin: 5px;
+}
+
+.table {
+    background-color: whitesmoke;
+    padding: 5% 10% 5% 10%;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.column {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+#login_button {
+    
+}
+
+#next {
+    display: block;
+    margin: 1em;
+    padding: 1em;
+    width: 100%;
+}
+
+#ks-logo {
+    width: 5rem;
+    height: 5rem;
+    padding-right: 1rem;
+}
+
+#headTitle {
+    font-size: 1.5em;
+}
+
+#headSubtitle {
+    font-size: 1em;
+}

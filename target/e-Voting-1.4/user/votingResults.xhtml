@@ -3,19 +3,26 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="userTemplate.xhtml">
+                template="../templates/userTemplate.xhtml">
     <ui:define name="content">
         <h:form>
             <h:dataTable value="#{votingResults.results}"
-                         var="subject">
+                         var="subject"
+                         styleClass="table">
                 <h:column>
-                    #{subject.subjectNumber}
+                    <h:panelGroup layout="block" styleClass="column">
+                        #{subject.number}
+                    </h:panelGroup>
                 </h:column>
                 <h:column>
-                    #{subject.subjectName}
+                    <h:panelGroup layout="block" styleClass="column">
+                        #{subject.name}
+                    </h:panelGroup>
                 </h:column>
                 <h:column>
-                    #{subject.subjectVotes}
+                    <h:panelGroup layout="block" styleClass="column">
+                        #{subject.numberOfVotes}
+                    </h:panelGroup>
                 </h:column>
              </h:dataTable>
         </h:form>

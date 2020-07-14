@@ -3,7 +3,7 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="userTemplate.xhtml"
+                template="../templates/userTemplate.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
         <h:form id="candidates">
@@ -13,11 +13,18 @@
                     <f:ajax listener="#{sessionTools.addVotedCandidate(candidate.id)}"/>
                     <h:panelGroup layout="block"
                                   styleClass="candidate">
-                        <h:outputText value="#{candidate.candidateNumber}"
+                        <h:outputText value="#{candidate.number}"
                                       styleClass="candidate-number"/>
                     </h:panelGroup>
                 </h:commandLink>
             </ui:repeat>
+            <h:commandLink action="#{candidatesList.vote()}">
+                <h:panelGroup layout="block"
+                              styleClass="submit">
+                    <h:outputText value="#{msg.btnSubmit}"
+                                  styleClass="submit"/>
+                </h:panelGroup>
+            </h:commandLink>
         </h:form>
         <h:outputScript target="body">
             var candidatesSelected = [];
@@ -40,16 +47,5 @@
                 console.log(candidatesSelected)
             });
         </h:outputScript>
-    </ui:define>
-    <ui:define name="right">
-        <h:form>
-            <h:commandLink action="#{candidatesList.vote()}">
-                <h:panelGroup layout="block"
-                              styleClass="submit">
-                    <h:outputText value="Submit"
-                                  styleClass="candidate-number"/>
-                </h:panelGroup>
-            </h:commandLink>
-        </h:form>
     </ui:define>
 </ui:composition>

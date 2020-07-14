@@ -3,11 +3,10 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="userTemplate.xhtml"
+                template="../templates/userTemplate.xhtml"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:define name="content">
         <h:form id="login">
-            <h:messages></h:messages>
             <div>
                 <div>
                     <h:outputLabel for="user_pid" value="#{msg.lblPersonalId}"/>
@@ -16,8 +15,8 @@
                     <h:inputText id="user_pid"
                                  value="#{login.userPId}"
                                  required="true"
-                                 requiredMessage="Please, enter your Personal ID.">
-                        <f:validateLength minimum="2" maximum="30"/>
+                                 requiredMessage="#{msg.lblEnterPID}">
+                        <f:validateLength minimum="6" maximum="15"/>
                     </h:inputText>
                     <h:message for="user_pid" errorClass="error"/>
                 </div>
@@ -30,10 +29,10 @@
                     <h:inputSecret id="user_pass"
                                    value="#{login.password}"
                                    required="true"
-                                   requiredMessage="Please, enter your password.">
-                        <f:validateLength minimum="2" maximum="30"/>
+                                   requiredMessage="#{msg.lblEnterPassword}">
+                        <f:validateLength minimum="6" maximum="30"/>
                     </h:inputSecret>
-                    <h:message for="user_pid" errorClass="error"/>
+                    <h:message for="user_pass" errorClass="error"/>
                 </div>
             </div>
             <div>

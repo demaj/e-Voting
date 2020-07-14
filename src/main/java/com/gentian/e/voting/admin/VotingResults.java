@@ -8,8 +8,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
@@ -23,24 +23,19 @@ public class VotingResults implements Serializable {
     private static final Logger _logger = Logger.getLogger("VotingResults");
     
     @Inject private ResultsService _resultsService;
-    
+        
     @PostConstruct
     private void init() {
         _logger.log(Level.INFO, "init in VotingResults");
-        _resultsService.clearCache();
     }
     
     // <editor-fold defaultstate="collapsed" desc="Property Results List">
     private List<Results> _results;
 
     public List<Results> getResults() {
-        _results = _resultsService.findAll();
+        _results = _resultsService.findAll(Results.class);
         return _results;
     }
-
-    public void setResults(List<Results> results) {
-        _results = results;
-    }
     // </editor-fold>
-    
+   
 }

@@ -10,81 +10,79 @@ import javax.persistence.criteria.Root;
 /**
  *
  * @author Gentian
- * @param <T>
  */
-public abstract class AbstractService<T> {
+public abstract class AbstractService {
     
     @PersistenceContext(unitName = "VotingPU")
     private EntityManager _em;
-    private final Class<T> _entityClass;
     
-    public AbstractService(Class<T> entityClass) {
-        _entityClass = entityClass;
+    public AbstractService() {
     }
     
-    protected EntityManager getEntityManager() {
+    public EntityManager getEntityManager() {
         return _em;
     }
     
-    public T create(T entity) {
+    public <T> T create(T entity) {
         getEntityManager().persist(entity);
         return entity;
     }
     
-    public T read(Object id) {
-        return getEntityManager().find(_entityClass, id);
+    public <T> T read(Object id, Class<T> entityClass) {
+        return getEntityManager().find(entityClass, id);
     }
     
-    public T update(T entity) {
+    public <T> T update(T entity) {
         return getEntityManager().merge(entity);
     }
     
-    public void delete(T entity) {
+    public void delete(Object entity) {
         getEntityManager().remove(getEntityManager().merge(entity));
     }
     
     /**
      * Convenience method to create or update automatically
      * 
+     * @param <T>
      * @param entity
      * @return 
      */
-    public T save(T entity) {
+    public <T> T save(T entity) {
         return update(entity);
     }
     
-    public T find(Object id) {
-        return getEntityManager().find(_entityClass, id);
+    public <T> T find(Class<T> entityClass, Object id) {
+        return getEntityManager().find(entityClass, id);
     }
     
-    public List<T> findAll() {
+    public <T> List<T> findAll(Class<T> entityClass) {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(_entityClass));
+        cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
     }
     
-    public List<T> findRange(int[] range) {
-        return findRange(range[0], range[1]);
+    public <T> List<T> findRange(Class<T> entityClass, int[] range) {
+        return findRange(entityClass, range[0], range[1]);
     }
     
-    public List<T> findRange(int from, int to) {
+    public <T> List<T> findRange(Class<T> entityClass, int from, int to) {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        cq.select(cq.from(_entityClass));
+        cq.select(cq.from(entityClass));
         Query q = getEntityManager().createQuery(cq);
         q.setMaxResults(to - from + 1);
         q.setFirstResult(from);
         return q.getResultList();
     }
     
-    public int count() {
+    public <T> int count(Class<T> entityClass) {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
-        Root<T> rt = cq.from(_entityClass);
+        Root<T> rt = cq.from(entityClass);
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
     
-    public boolean isAttached(T entity) {
+    public boolean isAttached(Object entity) {
         return getEntityManager().contains(entity);
     }
     

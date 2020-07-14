@@ -32,7 +32,7 @@ public class SubjectEditor implements Serializable {
     @PostConstruct
     private void init() {
         _logger.log(Level.INFO, "init in SubjectEditor");
-        _subjects = _subjectService.findAll();
+        // _subjects = _subjectService.findAll();
     }
     
 }

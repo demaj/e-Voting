@@ -1,10 +1,12 @@
 package com.gentian.e.voting.helper;
 
+import com.gentian.e.voting.entities.ESubject;
 import com.gentian.e.voting.entities.Subject;
 import com.gentian.e.voting.enums.Page;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -94,6 +96,18 @@ public class SessionTools implements Serializable {
     }
     // </editor-fold>
     
+    // <editor-fold defaultstate="collapsed" desc="Property Voted ESubject">
+    private ESubject _votedESubject;
+
+    public ESubject getVotedESubject() {
+        return _votedESubject;
+    }
+
+    public void setVotedESubject(ESubject votedESubject) {
+        _votedESubject = votedESubject;
+    }
+    // </editor-fold>
+    
     // <editor-fold defaultstate="collapsed" desc="Property Voted Candidates">
     private List<Integer> _votedCandidates;
 
@@ -117,6 +131,11 @@ public class SessionTools implements Serializable {
             _logger.log(Level.INFO, "");
         }
         _logger.log(Level.INFO, "List of voted candidates: {0}", _votedCandidates);
+    }
+    
+    public void clearVotedCandidates() {
+        _logger.log(Level.INFO, "Clearing voted candidates");
+        _votedCandidates = new ArrayList<>();
     }
     // </editor-fold>
     
